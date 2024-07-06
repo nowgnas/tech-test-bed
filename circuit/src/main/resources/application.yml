@@ -1,0 +1,15 @@
+server:
+  port: 9999
+
+endpoint:
+  url: localhost:9999
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 3000
+        readTimeout: 3000
+      channelClientService:
+        connectTimeout: 5000
+        readTimeout: 5000
