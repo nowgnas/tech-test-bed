@@ -14,4 +14,8 @@ public class ClientRequestService {
     public ClientApiResponseModel test() {
         return channelClientService.getApiClientResponse();
     }
+
+    public ClientApiResponseModel testDelay() {
+        return channelClientService.getApiClientDelayResponse();
+    }
 }

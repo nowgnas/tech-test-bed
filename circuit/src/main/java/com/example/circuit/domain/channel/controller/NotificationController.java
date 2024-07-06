@@ -28,8 +28,25 @@ public class NotificationController {
                 .build();
     }
 
+    @GetMapping("/test/api/delay")
+    public ClientApiResponseModel testDelay() throws InterruptedException {
+        Thread.sleep(4000);
+        return ClientApiResponseModel.builder()
+                .data(List.of(ListItem.builder()
+                        .code("200")
+                        .id("ID")
+                        .build()))
+                .resultCode("500")
+                .build();
+    }
+
     @GetMapping("/api/call/test")
     public ClientApiResponseModel apiTest() {
         return clientRequestService.test();
+    }
+
+    @GetMapping("/api/call/test/delay")
+    public ClientApiResponseModel apiTestDelay() {
+        return clientRequestService.testDelay();
     }
 }

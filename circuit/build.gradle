@@ -37,6 +37,20 @@ dependencies {
 // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.2.RELEASE'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    // Resilience4j Spring Boot 2
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2'
+
+    // Resilience4j Circuit Breaker
+    implementation 'io.github.resilience4j:resilience4j-circuitbreaker'
+
+    // Resilience4j Time Limiter
+    implementation 'io.github.resilience4j:resilience4j-timelimiter'
+
+    // Resilience4j Micrometer
+    implementation 'io.github.resilience4j:resilience4j-micrometer'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 tasks.named('test') {

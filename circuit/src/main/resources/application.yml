@@ -11,5 +11,30 @@ feign:
         connectTimeout: 3000
         readTimeout: 3000
       channelClientService:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 500
+        readTimeout: 500
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      slidingWindowType: COUNT_BASED
+      permittedNumberOfCallsInHalfOpenState: 3
+      waitDurationInOpenState: 70000
+      failureRateThreshold: 50
+  instances:
+    getApiClientResponse:
+      baseConfig: default
+  timelimiter:
+    instances:
+      yourServiceTimeLimiter:
+        timeoutDuration: 4s
+logging:
+  level:
+    # Set logging level for Resilience4j and Circuit Breaker classes
+    io.github.resilience4j: DEBUG
+    # Adjust specific Circuit Breaker logging as needed
+    io.github.resilience4j.circuitbreaker: DEBUG
+    # Optionally, adjust logging levels for other relevant packages
+    org.springframework.web.client.RestTemplate: DEBUG
