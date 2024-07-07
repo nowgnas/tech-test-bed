@@ -26,10 +26,6 @@ resilience4j.circuitbreaker:
   instances:
     getApiClientResponse:
       baseConfig: default
-  timelimiter:
-    instances:
-      yourServiceTimeLimiter:
-        timeoutDuration: 4s
 logging:
   level:
     # Set logging level for Resilience4j and Circuit Breaker classes

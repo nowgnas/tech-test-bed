@@ -3,7 +3,7 @@ package com.example.circuit.domain.channel.controller;
 import com.example.circuit.domain.channel.model.ClientApiResponseModel;
 import com.example.circuit.domain.channel.model.ListItem;
 import com.example.circuit.domain.channel.service.ClientRequestService;
-import java.util.List;
+import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class NotificationController {
     public ClientApiResponseModel test() throws InterruptedException {
         Thread.sleep(3000);
         return ClientApiResponseModel.builder()
-                .data(List.of(ListItem.builder()
+                .data(Collections.singletonList(ListItem.builder()
                         .code("200")
                         .id("ID")
                         .build()))
@@ -32,7 +32,7 @@ public class NotificationController {
     public ClientApiResponseModel testDelay() throws InterruptedException {
         Thread.sleep(4000);
         return ClientApiResponseModel.builder()
-                .data(List.of(ListItem.builder()
+                .data(Collections.singletonList(ListItem.builder()
                         .code("200")
                         .id("ID")
                         .build()))

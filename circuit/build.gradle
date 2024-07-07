@@ -1,56 +1,35 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.5.14' // Use the latest version of Spring Boot 2.5.x
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    // Compatible with Spring Boot 2.5.x
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(11) // Set to JDK 11
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
+
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2020.0.5'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR6'
     }
 }
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.4.0' // Correct version of Resilience4j
+    implementation 'io.github.resilience4j:resilience4j-circuitbreaker:1.4.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.2.RELEASE'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    // Resilience4j Spring Boot 2
-    implementation 'io.github.resilience4j:resilience4j-spring-boot2'
-
-    // Resilience4j Circuit Breaker
-    implementation 'io.github.resilience4j:resilience4j-circuitbreaker'
-
-    // Resilience4j Time Limiter
-    implementation 'io.github.resilience4j:resilience4j-timelimiter'
-
-    // Resilience4j Micrometer
-    implementation 'io.github.resilience4j:resilience4j-micrometer'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 }
 
 tasks.named('test') {
