@@ -10,7 +10,7 @@ feign:
       default:
         connectTimeout: 3000
         readTimeout: 3000
-      channelClientService:
+      notificationClientService:
         connectTimeout: 500
         readTimeout: 500
 

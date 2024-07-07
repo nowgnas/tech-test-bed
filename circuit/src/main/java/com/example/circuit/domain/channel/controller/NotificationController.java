@@ -7,6 +7,7 @@ import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -49,4 +50,17 @@ public class NotificationController {
     public ClientApiResponseModel apiTestDelay() {
         return clientRequestService.testDelay();
     }
+
+    @GetMapping("/api/params")
+    public ClientApiResponseModel paramsApi(@RequestParam("memberNo") String memberNo) {
+        return ClientApiResponseModel.builder()
+                .resultCode("params call")
+                .build();
+    }
+
+    @GetMapping("/params")
+    public ClientApiResponseModel paramsCall(@RequestParam("memberNo") String memberNo) {
+        return clientRequestService.paramsApiCall(memberNo);
+    }
+
 }
