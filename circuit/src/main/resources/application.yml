@@ -11,18 +11,24 @@ feign:
         connectTimeout: 3000
         readTimeout: 3000
       notificationClientService:
-        connectTimeout: 500
-        readTimeout: 500
+        connectTimeout: 2000
+        readTimeout: 2000
 
 resilience4j.circuitbreaker:
   configs:
     default:
-      registerHealthIndicator: true
-      slidingWindowSize: 10
-      slidingWindowType: COUNT_BASED
-      permittedNumberOfCallsInHalfOpenState: 3
-      waitDurationInOpenState: 70000
       failureRateThreshold: 50
+      slowCallRateThreshold: 70
+      slowCallDurationThreshold: 2000
+      permittedNumberOfCallsInHalfOpenState: 20  # 총 요청 수의 5%
+      maxWaitDurationInHalfOpenState: 2000
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 40  # 예를 들어 총 요청 수가 40일 때 5%는 2
+      minimumNumberOfCalls: 5
+      registerHealthIndicator: true
+      waitDurationInOpenState: 3000
+
+
   instances:
     getApiClientResponse:
       baseConfig: default
